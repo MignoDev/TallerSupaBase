@@ -1,9 +1,6 @@
 package com.example.tallerSpringBoot.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +21,11 @@ public class ReservaZona {
 
     private LocalTime horaInicio;
 
-    private long idZona;
+    @ManyToOne
+    @JoinColumn(name = "id_zona")
+    private ZonaSocial idZona;
 
-    private long idPropietario;
+    @ManyToOne
+    @JoinColumn(name = "id_propietario")
+    private Propietario idPropietario;
 }

@@ -26,6 +26,7 @@ public class Visitante {
     @Column(length = 100)
     private String correo;
 
-    //relacion
-    private long idPropietario;
+    @ManyToOne
+    @JoinColumn(name = "id_propietario")
+    private Propietario idPropietario;
 }

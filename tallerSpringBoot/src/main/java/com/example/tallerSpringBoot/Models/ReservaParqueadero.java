@@ -22,6 +22,6 @@ public class ReservaParqueadero {
     private LocalTime horaInicio;
 
     @ManyToOne
-    @JoinColumn(name = "id_propietario")
-    private long idPropietario;
+    @JoinColumn(name = "id_Propietario")
+    private Propietario idPropietario;
 }

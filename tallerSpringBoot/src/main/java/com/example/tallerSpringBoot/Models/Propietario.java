@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
@@ -26,4 +27,13 @@ public class Propietario {
     private LocalDate fechaVisita;
 
     private LocalTime horaEntrada;
+
+    @OneToMany(mappedBy = "idPropietario")
+    private List<ReservaParqueadero> reservaParqueaderos;
+
+    @OneToMany(mappedBy = "idPropietario")
+    private List<ReservaZona> reservaZonas;
+
+    @OneToMany(mappedBy = "idPropietario")
+    private List<Visitante> visitantes;
 }
