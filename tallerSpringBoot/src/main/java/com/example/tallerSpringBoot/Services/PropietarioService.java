@@ -13,7 +13,7 @@ public class PropietarioService {
     @Autowired
     public PropietarioRepository propietarioRepository;
 
-    public List<Propietario> buscarTodos () {
+    public List<Propietario> listar () {
         return propietarioRepository.findAll();
     }
 
