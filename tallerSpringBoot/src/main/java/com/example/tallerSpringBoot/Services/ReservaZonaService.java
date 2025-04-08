@@ -46,9 +46,9 @@ public class ReservaZonaService {
         reservaZonaRepository.deleteById(id);
     }
 
-    public ReservaZona actualizar (ReservaZona reservaZona)
+    public ReservaZona actualizar (long id, ReservaZona reservaZona)
     {
-        if (!reservaZonaRepository.existsById(reservaZona.getIdReserva()))
+        if (!reservaZonaRepository.existsById(id))
         {
             throw new RuntimeException("La reserva no existe");
         }

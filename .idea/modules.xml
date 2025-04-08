@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TallerSupaBase.iml" filepath="$PROJECT_DIR$/.idea/TallerSupaBase.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tallerSpringBoot/tallerSpringBoot.iml" filepath="$PROJECT_DIR$/tallerSpringBoot/tallerSpringBoot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tallerSpringBoot.iml" filepath="$PROJECT_DIR$/.idea/tallerSpringBoot.iml" />
     </modules>
   </component>
 </project>

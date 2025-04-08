@@ -28,7 +28,7 @@ public class VisitanteService {
         return visitanteRepository.getReferenceById(id);
     }
 
-    public Visitante guardar (Visitante visitante)
+    public Visitante crear (Visitante visitante)
     {
         return visitanteRepository.save(visitante);
     }
@@ -51,9 +51,9 @@ public class VisitanteService {
         visitanteRepository.deleteById(id);
     }
 
-    public Visitante actualizar (Visitante visitante)
+    public Visitante actualizar (long id, Visitante visitante)
     {
-        if (!visitanteRepository.existsById(visitante.getIdVisitante()))
+        if (!visitanteRepository.existsById(id))
         {
             throw new RuntimeException("El registro no existe");
         }

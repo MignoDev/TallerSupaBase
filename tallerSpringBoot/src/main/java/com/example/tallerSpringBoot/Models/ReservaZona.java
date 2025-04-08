@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class ReservaZona {
 
     @Id
@@ -28,4 +27,55 @@ public class ReservaZona {
     @ManyToOne
     @JoinColumn(name = "id_propietario")
     private Propietario idPropietario;
+
+    public ReservaZona() {
+    }
+
+    public ReservaZona(long idReserva, LocalDate fecha, LocalTime horaInicio, ZonaSocial idZona, Propietario idPropietario) {
+        this.idReserva = idReserva;
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.idZona = idZona;
+        this.idPropietario = idPropietario;
+    }
+
+    public long getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(long idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public ZonaSocial getIdZona() {
+        return idZona;
+    }
+
+    public void setIdZona(ZonaSocial idZona) {
+        this.idZona = idZona;
+    }
+
+    public Propietario getIdPropietario() {
+        return idPropietario;
+    }
+
+    public void setIdPropietario(Propietario idPropietario) {
+        this.idPropietario = idPropietario;
+    }
 }

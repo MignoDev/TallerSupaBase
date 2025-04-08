@@ -28,7 +28,7 @@ public class ReservaParqueaderoService {
         return reservaParqueaderoRepository.getReferenceById(id);
     }
 
-    public ReservaParqueadero guardar (ReservaParqueadero reservaParqueadero)
+    public ReservaParqueadero crear (ReservaParqueadero reservaParqueadero)
     {
         return reservaParqueaderoRepository.save(reservaParqueadero);
     }
@@ -51,9 +51,9 @@ public class ReservaParqueaderoService {
         reservaParqueaderoRepository.deleteById(id);
     }
 
-    public ReservaParqueadero actualizar (ReservaParqueadero reservaParqueadero)
+    public ReservaParqueadero actualizar (long id, ReservaParqueadero reservaParqueadero)
     {
-        if (!reservaParqueaderoRepository.existsById(reservaParqueadero.getIdReserva()))
+        if (!reservaParqueaderoRepository.existsById(id))
         {
             throw new RuntimeException("El registro no existe");
         }

@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class ZonaSocial {
 
     @Id
@@ -27,4 +26,55 @@ public class ZonaSocial {
 
     @OneToMany(mappedBy = "idZona")
     private List<ReservaZona> reservaZonas;
+
+    public ZonaSocial() {
+    }
+
+    public ZonaSocial(long idZona, String nombre, String ubicacion, int capacidad, List<ReservaZona> reservaZonas) {
+        this.idZona = idZona;
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+        this.capacidad = capacidad;
+        this.reservaZonas = reservaZonas;
+    }
+
+    public long getIdZona() {
+        return idZona;
+    }
+
+    public void setIdZona(long idZona) {
+        this.idZona = idZona;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public List<ReservaZona> getReservaZonas() {
+        return reservaZonas;
+    }
+
+    public void setReservaZonas(List<ReservaZona> reservaZonas) {
+        this.reservaZonas = reservaZonas;
+    }
 }

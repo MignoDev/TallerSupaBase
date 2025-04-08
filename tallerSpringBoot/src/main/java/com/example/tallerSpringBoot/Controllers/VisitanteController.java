@@ -1,9 +1,8 @@
 package com.example.tallerSpringBoot.Controllers;
 
-import com.example.tallerSpringBoot.Models.Propietario;
 import com.example.tallerSpringBoot.Models.ReservaParqueadero;
-import com.example.tallerSpringBoot.Services.PropietarioService;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.example.tallerSpringBoot.Models.Visitante;
+import com.example.tallerSpringBoot.Services.VisitanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/propietario")
-public class PropietarioController {
+@RequestMapping("/api/visitante")
+public class VisitanteController {
 
     @Autowired
-    public PropietarioService propietarioService;
+    public VisitanteService visitanteService;
 
     @GetMapping("/listar")
     public ResponseEntity<?> listar() {
         try {
-            List<Propietario> response = propietarioService.listar();
+            List<Visitante> response = visitanteService.listar();
             if(response.isEmpty())
             {
                 return ResponseEntity.noContent().build();
@@ -36,7 +35,7 @@ public class PropietarioController {
     public ResponseEntity<?> buscarId(@PathVariable long id)
     {
         try {
-            Propietario result = propietarioService.buscarId(id);
+            Visitante result = visitanteService.buscarId(id);
             return ResponseEntity.ok(result);
         } catch (RuntimeException e)
         {
@@ -49,10 +48,10 @@ public class PropietarioController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<?> crear (@RequestBody Propietario propietario)
+    public ResponseEntity<?> crear (@RequestBody Visitante visitante)
     {
         try {
-            Propietario result = propietarioService.crear(propietario);
+            Visitante result = visitanteService.crear(visitante);
             return ResponseEntity.ok(result);
         } catch ( Exception e)
         {
@@ -64,7 +63,7 @@ public class PropietarioController {
     public ResponseEntity<?> eliminarId (@PathVariable long id)
     {
         try {
-            propietarioService.eliminarId(id);
+            visitanteService.eliminarId(id);
             return ResponseEntity.ok("Registro eliminado");
         } catch (RuntimeException e)
         {
@@ -77,10 +76,10 @@ public class PropietarioController {
     }
 
     @DeleteMapping("/eliminar")
-    public ResponseEntity<?> eliminar (@RequestBody Propietario propietario)
+    public ResponseEntity<?> eliminar (@RequestBody Visitante visitante)
     {
         try {
-            propietarioService.eliminar(propietario);
+            visitanteService.eliminar(visitante);
             return ResponseEntity.ok("Registro eliminado");
         } catch (RuntimeException e)
         {
@@ -92,10 +91,10 @@ public class PropietarioController {
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<?> actualizar (@PathVariable long id, @RequestBody Propietario propietario)
+    public ResponseEntity<?> actualizar (@PathVariable long id, @RequestBody Visitante visitante)
     {
         try {
-            Propietario result = propietarioService.actualizar(id, propietario);
+            Visitante result = visitanteService.actualizar(id, visitante);
             return ResponseEntity.ok(result);
         } catch (RuntimeException e)
         {
@@ -106,15 +105,5 @@ public class PropietarioController {
         }
     }
 
-    @GetMapping("/buscarPropietario/{id}")
-    public ResponseEntity<?> buscarPropietario (@PathVariable long id)
-    {
-        try {
-            return ResponseEntity.ok(propietarioService.getPropietario(id));
-        } catch (Exception e)
-        {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se ha generado un error en la peticion creada" + e.getMessage());
-        }
-    }
 
 }

@@ -1,9 +1,8 @@
 package com.example.tallerSpringBoot.Controllers;
 
-import com.example.tallerSpringBoot.Models.Propietario;
-import com.example.tallerSpringBoot.Models.ReservaParqueadero;
-import com.example.tallerSpringBoot.Services.PropietarioService;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.example.tallerSpringBoot.Models.Visitante;
+import com.example.tallerSpringBoot.Models.ZonaSocial;
+import com.example.tallerSpringBoot.Services.ZonaSocialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/propietario")
-public class PropietarioController {
+@RequestMapping("/api/zona")
+public class ZonaSocialController {
 
     @Autowired
-    public PropietarioService propietarioService;
+    public ZonaSocialService zonaSocialService;
 
     @GetMapping("/listar")
     public ResponseEntity<?> listar() {
         try {
-            List<Propietario> response = propietarioService.listar();
+            List<ZonaSocial> response = zonaSocialService.listar();
             if(response.isEmpty())
             {
                 return ResponseEntity.noContent().build();
@@ -36,7 +35,7 @@ public class PropietarioController {
     public ResponseEntity<?> buscarId(@PathVariable long id)
     {
         try {
-            Propietario result = propietarioService.buscarId(id);
+            ZonaSocial result = zonaSocialService.buscarId(id);
             return ResponseEntity.ok(result);
         } catch (RuntimeException e)
         {
@@ -49,10 +48,10 @@ public class PropietarioController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<?> crear (@RequestBody Propietario propietario)
+    public ResponseEntity<?> crear (@RequestBody ZonaSocial zona)
     {
         try {
-            Propietario result = propietarioService.crear(propietario);
+            ZonaSocial result = zonaSocialService.crear(zona);
             return ResponseEntity.ok(result);
         } catch ( Exception e)
         {
@@ -64,7 +63,7 @@ public class PropietarioController {
     public ResponseEntity<?> eliminarId (@PathVariable long id)
     {
         try {
-            propietarioService.eliminarId(id);
+            zonaSocialService.eliminarId(id);
             return ResponseEntity.ok("Registro eliminado");
         } catch (RuntimeException e)
         {
@@ -77,10 +76,10 @@ public class PropietarioController {
     }
 
     @DeleteMapping("/eliminar")
-    public ResponseEntity<?> eliminar (@RequestBody Propietario propietario)
+    public ResponseEntity<?> eliminar (@RequestBody ZonaSocial zona)
     {
         try {
-            propietarioService.eliminar(propietario);
+            zonaSocialService.eliminar(zona);
             return ResponseEntity.ok("Registro eliminado");
         } catch (RuntimeException e)
         {
@@ -92,10 +91,10 @@ public class PropietarioController {
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<?> actualizar (@PathVariable long id, @RequestBody Propietario propietario)
+    public ResponseEntity<?> actualizar (@PathVariable long id, @RequestBody ZonaSocial zona)
     {
         try {
-            Propietario result = propietarioService.actualizar(id, propietario);
+            ZonaSocial result = zonaSocialService.actualizar(id, zona);
             return ResponseEntity.ok(result);
         } catch (RuntimeException e)
         {
@@ -103,17 +102,6 @@ public class PropietarioController {
         } catch (Exception e)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ha ocurrido un error al actualizar el registro: " + e.getMessage());
-        }
-    }
-
-    @GetMapping("/buscarPropietario/{id}")
-    public ResponseEntity<?> buscarPropietario (@PathVariable long id)
-    {
-        try {
-            return ResponseEntity.ok(propietarioService.getPropietario(id));
-        } catch (Exception e)
-        {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se ha generado un error en la peticion creada" + e.getMessage());
         }
     }
 

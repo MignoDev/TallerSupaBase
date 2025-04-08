@@ -28,7 +28,7 @@ public class ZonaSocialService {
         return zonaSocialRepository.getReferenceById(id);
     }
 
-    public ZonaSocial guardar (ZonaSocial zonaSocial)
+    public ZonaSocial crear (ZonaSocial zonaSocial)
     {
         return zonaSocialRepository.save(zonaSocial);
     }
@@ -51,9 +51,9 @@ public class ZonaSocialService {
         zonaSocialRepository.deleteById(id);
     }
 
-    public ZonaSocial actualizar (ZonaSocial zonaSocial)
+    public ZonaSocial actualizar (long id, ZonaSocial zonaSocial)
     {
-        if (!zonaSocialRepository.existsById(zonaSocial.getIdZona()))
+        if (!zonaSocialRepository.existsById(id))
         {
             throw new RuntimeException("El registro no existe");
         }

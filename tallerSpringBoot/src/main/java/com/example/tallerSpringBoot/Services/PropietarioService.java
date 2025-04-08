@@ -48,12 +48,17 @@ public class PropietarioService {
         propietarioRepository.deleteById(id);
     }
 
-    public Propietario actualizar (Propietario propietario)
+    public Propietario actualizar (long id, Propietario propietario)
     {
-        if (!propietarioRepository.existsById(propietario.getIdPropietario()))
+        if (!propietarioRepository.existsById(id))
         {
             throw new RuntimeException("El propietario que se desea actualizar no existe");
         }
         return propietarioRepository.save(propietario);
+    }
+
+    public Propietario getPropietario (long id)
+    {
+        return propietarioRepository.buscarPropietario(id);
     }
 }
