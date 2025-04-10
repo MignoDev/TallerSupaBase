@@ -110,7 +110,7 @@ public class PropietarioController {
     public ResponseEntity<?> buscarPropietario (@PathVariable long id)
     {
         try {
-            return ResponseEntity.ok(propietarioService.getPropietario(id));
+            return ResponseEntity.ok(propietarioService.buscarPropietarioVisitantes(id));
         } catch (Exception e)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se ha generado un error en la peticion creada" + e.getMessage());

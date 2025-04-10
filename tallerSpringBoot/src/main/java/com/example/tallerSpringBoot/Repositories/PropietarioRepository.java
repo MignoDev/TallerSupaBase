@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PropietarioRepository extends JpaRepository<Propietario, Long> {
-    @Query(value = "select * from Propietario where id_propietario = :id ", nativeQuery = true)
-    Propietario buscarPropietario(@Param("id") Long id);
+    @Query(value = "select p, v  from propietario p inner join visitante v on v.id_propietario = p.id_propietario where p.id_propietario = :id ", nativeQuery = true)
+    List<Object[]> buscarPropietarioVisitantes(@Param("id") Long id);
 }

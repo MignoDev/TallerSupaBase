@@ -57,8 +57,8 @@ public class PropietarioService {
         return propietarioRepository.save(propietario);
     }
 
-    public Propietario getPropietario (long id)
+    public List<Object[]> buscarPropietarioVisitantes (long id)
     {
-        return propietarioRepository.buscarPropietario(id);
+        return propietarioRepository.buscarPropietarioVisitantes(id);
     }
 }

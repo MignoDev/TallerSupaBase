@@ -1,5 +1,6 @@
 package com.example.tallerSpringBoot.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,20 +27,25 @@ public class Visitante {
     @Column(length = 100)
     private String correo;
 
+    @Column(name = "id_propietario")
+    private long idPropietario;
+
     @ManyToOne
-    @JoinColumn(name = "id_propietario")
-    private Propietario idPropietario;
+    @JsonIgnore
+    @JoinColumn(name = "id_propietario", insertable = false, updatable = false)
+    private Propietario propietario;
 
     public Visitante() {
     }
 
-    public Visitante(long idVisitante, String nombre, String cedula, String telefono, String correo, Propietario idPropietario) {
+    public Visitante(long idVisitante, String nombre, String cedula, String telefono, String correo, long idPropietario, Propietario propietario) {
         this.idVisitante = idVisitante;
         this.nombre = nombre;
         this.cedula = cedula;
         this.telefono = telefono;
         this.correo = correo;
         this.idPropietario = idPropietario;
+        this.propietario = propietario;
     }
 
     public long getIdVisitante() {
@@ -82,11 +88,19 @@ public class Visitante {
         this.correo = correo;
     }
 
-    public Propietario getIdPropietario() {
+    public long getIdPropietario() {
         return idPropietario;
     }
 
-    public void setIdPropietario(Propietario idPropietario) {
+    public void setIdPropietario(long idPropietario) {
         this.idPropietario = idPropietario;
+    }
+
+    public Propietario getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(Propietario propietario) {
+        this.propietario = propietario;
     }
 }
