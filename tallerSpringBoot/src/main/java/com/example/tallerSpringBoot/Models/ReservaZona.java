@@ -20,23 +20,31 @@ public class ReservaZona {
 
     private LocalTime horaInicio;
 
-    @ManyToOne
-    @JoinColumn(name = "id_zona")
-    private ZonaSocial idZona;
+    @Column(name = "id_zona")
+    private long idZona;
+
+    @Column(name = "id_propietario")
+    private long idPropietario;
 
     @ManyToOne
-    @JoinColumn(name = "id_propietario")
-    private Propietario idPropietario;
+    @JoinColumn(name = "id_zona", insertable = false, updatable = false)
+    private ZonaSocial zona;
+
+    @ManyToOne
+    @JoinColumn(name = "id_propietario", insertable = false, updatable = false)
+    private Propietario propietario;
 
     public ReservaZona() {
     }
 
-    public ReservaZona(long idReserva, LocalDate fecha, LocalTime horaInicio, ZonaSocial idZona, Propietario idPropietario) {
+    public ReservaZona(long idReserva, LocalDate fecha, LocalTime horaInicio, long idZona, long idPropietario, ZonaSocial zona, Propietario propietario) {
         this.idReserva = idReserva;
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.idZona = idZona;
         this.idPropietario = idPropietario;
+        this.zona = zona;
+        this.propietario = propietario;
     }
 
     public long getIdReserva() {
@@ -63,19 +71,35 @@ public class ReservaZona {
         this.horaInicio = horaInicio;
     }
 
-    public ZonaSocial getIdZona() {
+    public long getIdZona() {
         return idZona;
     }
 
-    public void setIdZona(ZonaSocial idZona) {
+    public void setIdZona(long idZona) {
         this.idZona = idZona;
     }
 
-    public Propietario getIdPropietario() {
+    public long getIdPropietario() {
         return idPropietario;
     }
 
-    public void setIdPropietario(Propietario idPropietario) {
+    public void setIdPropietario(long idPropietario) {
         this.idPropietario = idPropietario;
+    }
+
+    public ZonaSocial getZona() {
+        return zona;
+    }
+
+    public void setZona(ZonaSocial zona) {
+        this.zona = zona;
+    }
+
+    public Propietario getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(Propietario propietario) {
+        this.propietario = propietario;
     }
 }

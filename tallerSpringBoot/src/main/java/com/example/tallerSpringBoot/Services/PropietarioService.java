@@ -61,4 +61,19 @@ public class PropietarioService {
     {
         return propietarioRepository.buscarPropietarioVisitantes(id);
     }
+
+    public List<Object[]> buscarPropietariosParqueaderos (long id)
+    {
+        return propietarioRepository.buscarPropietarioParqueadero(id);
+    }
+
+    public List<Object[]> buscarPropietariosZonas (long id)
+    {
+        return propietarioRepository.buscarPropietarioZona(id);
+    }
+
+    public List<Object[]> buscarPropietariosVisitanteParqueadero (long id)
+    {
+        return propietarioRepository.buscarPropietarioParqueaderoZona(id);
+    }
 }

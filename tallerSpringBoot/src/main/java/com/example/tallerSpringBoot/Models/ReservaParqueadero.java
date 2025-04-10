@@ -1,5 +1,6 @@
 package com.example.tallerSpringBoot.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,18 +22,23 @@ public class ReservaParqueadero {
 
     private LocalTime horaInicio;
 
+    @Column(name = "id_propietario")
+    private long idPropietario;
+
     @ManyToOne
-    @JoinColumn(name = "id_Propietario")
-    private Propietario idPropietario;
+    @JoinColumn(name = "id_propietario", insertable = false, updatable = false)
+    @JsonIgnore
+    private Propietario propietario;
 
     public ReservaParqueadero() {
     }
 
-    public ReservaParqueadero(long idReserva, LocalDate fecha, LocalTime horaInicio, Propietario idPropietario) {
+    public ReservaParqueadero(long idReserva, LocalDate fecha, LocalTime horaInicio, long idPropietario, Propietario propietario) {
         this.idReserva = idReserva;
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.idPropietario = idPropietario;
+        this.propietario = propietario;
     }
 
     public long getIdReserva() {
@@ -59,11 +65,11 @@ public class ReservaParqueadero {
         this.horaInicio = horaInicio;
     }
 
-    public Propietario getIdPropietario() {
+    public long getIdPropietario() {
         return idPropietario;
     }
 
-    public void setIdPropietario(Propietario idPropietario) {
-        this.idPropietario = idPropietario;
+    public Propietario getPropietario() {
+        return propietario;
     }
 }

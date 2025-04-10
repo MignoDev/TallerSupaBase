@@ -1,5 +1,6 @@
 package com.example.tallerSpringBoot.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class ZonaSocial {
     private int capacidad;
 
     @OneToMany(mappedBy = "idZona")
+    @JsonIgnore
     private List<ReservaZona> reservaZonas;
 
     public ZonaSocial() {

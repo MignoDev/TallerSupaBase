@@ -106,11 +106,49 @@ public class PropietarioController {
         }
     }
 
-    @GetMapping("/buscarPropietario/{id}")
-    public ResponseEntity<?> buscarPropietario (@PathVariable long id)
+    @GetMapping("/buscarPropietarioVisitante/{id}")
+    public ResponseEntity<?> buscarPropietarioVisitante (@PathVariable long id)
     {
         try {
             return ResponseEntity.ok(propietarioService.buscarPropietarioVisitantes(id));
+        } catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se ha generado un error en la peticion creada" + e.getMessage());
+        }
+    }
+
+    @GetMapping("/buscarPropietarioParqueadero/{id}")
+    public ResponseEntity<?> buscarPropietarioParqueadero (@PathVariable long id)
+    {
+        try {
+            return ResponseEntity.ok(propietarioService.buscarPropietariosParqueaderos(id));
+        } catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se ha generado un error en la peticion creada" + e.getMessage());
+        }
+    }
+
+    @GetMapping("/buscarPropietarioZona/{id}")
+    public ResponseEntity<?> buscarPropietarioZona (@PathVariable long id)
+    {
+        try {
+            return ResponseEntity.ok(propietarioService.buscarPropietariosZonas(id));
+        } catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se ha generado un error en la peticion creada" + e.getMessage());
+        }
+    }
+
+    @GetMapping("/buscarPropietarioVP/{id}")
+    public ResponseEntity<?> buscarPropietarioVisitanteParqueadero (@PathVariable long id)
+    {
+        try {
+            List<Object[]> response = propietarioService.buscarPropietariosVisitanteParqueadero(id);
+            if (response.isEmpty())
+            {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Registro no existe");
+            }
+            return ResponseEntity.ok(response);
         } catch (Exception e)
         {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Se ha generado un error en la peticion creada" + e.getMessage());
